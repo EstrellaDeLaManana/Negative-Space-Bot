@@ -5,7 +5,7 @@ from RPG.bot_classes.locations.planets.estrad.forest.estrad_forest_lake import F
 
 class EstradForest:
     def __init__(self, game):
-        self.name = 'Лес на Эстраде'
+        self.name = 'Bosque en el Escenario'
         self.entry = ForestEntry(game)
         self.field = ForestField(game)
         self.lake = ForestLake(game)

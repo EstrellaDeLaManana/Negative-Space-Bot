@@ -4,40 +4,40 @@ from RPG.consts.items import items
 
 class Player:
     def __init__(self, name):
-        self.name = name  # Основные характеристики игрока
+        self.name = name  # Características principales del jugador
         self.hp = 60
         self.armor = 0
         self.level = 1
         self.money = 250
 
-        self.endurance = 1  # Индивидуальные параметры игрока
+        self.endurance = 1  # Parámetros individuales del jugador
         self.accuracy = 6
         self.perception = 1
         self.charisma = 1
         self.agility = 1
         self.luck = 4
 
-        self.quest_items = []  # Список полученных квестовых предметов
+        self.quest_items = []  # Lista de objetos de búsqueda recibidos
 
-        self.inventory = [None] * 5  # Инвентарь и снаряжение
+        self.inventory = [None] * 5  # Inventario y equipo
         self.weapon = None
         self.armor_set = None
         self.laser_ammo = 0
 
-        self.in_fight = False  # Находится ли игрок в бою
+        self.in_fight = False  # Si el jugador está en combate
 
     def get_stats(self):
         stats = f'*{self.name}* 😎\n' \
-                f'🎖 _Уровень_: {self.level}\n' \
-                f'❤ _Здоровье_: {self.hp}\n' \
-                f'💵 _Кредиты_: {self.money}\n' \
-                f'*Характеристики*\n' \
-                f'🔫 _Меткость_: {self.accuracy}\n' \
-                f'👂🏻 _Восприятие_: {self.perception}\n' \
-                f'🏃🏻‍♂ _Выносливость_: {self.endurance}\n' \
-                f'🗣 _Харизма_: {self.charisma}\n' \
-                f'🏃🏻‍♂ _Ловкость_: {self.agility}\n' \
-                f'🍀 _Удача_: {self.luck}'
+                f'🎖 _Nivel_: {self.level}\n' \
+                f'❤ _Salud_: {self.hp}\n' \
+                f'💵 _Préstamos_: {self.money}\n' \
+                f'*Características*\n' \
+                f'🔫 _Precisión_: {self.accuracy}\n' \
+                f'👂🏻 _Percepción_: {self.perception}\n' \
+                f'🏃🏻‍♂ _Resistencia_: {self.endurance}\n' \
+                f'🗣 _Carisma_: {self.charisma}\n' \
+                f'🏃🏻‍♂ _Agilidad_: {self.agility}\n' \
+                f'🍀 _Suerte_: {self.luck}'
         return stats
 
     def add_item(self, item):
@@ -52,12 +52,12 @@ class Player:
     def buy_item(self, item, trader_factor):
         if self.money >= item.price:
             if not self.add_item(item):
-                return False, 'инвентарь полон'
+                return False, 'el inventario está lleno'
             else:
                 self.money -= int(item.price * trader_factor)
-                return True, 'Успешно куплено:'
+                return True, 'Comprado con éxito:'
         else:
-            return False, 'недостаточно денег'
+            return False, 'no hay suficiente dinero'
 
     def sell_item(self, item, trader_factor):
         self.money += int(item.price / trader_factor)
@@ -77,30 +77,30 @@ class Player:
     def get_equipment(self):
         weapon, armor_set = self.weapon, self.armor_set
         if self.weapon is None:
-            weapon = ' <Пусто>'
+            weapon = ' <Está vacío>'
         if self.armor_set is None:
-            armor_set = ' <Пусто>'
+            armor_set = ' <Está vacío>'
         equipment = f'😎 *{self.name}*\n' \
-                    f'🧥 _Комплект брони_: {str(armor_set)[1:]}\n' \
-                    f'🔫 _Оружие_: {str(weapon)[1:]}\n' \
-                    f'🔋 _Лазерные батареи_: {self.laser_ammo}'
+                    f'🧥 _Комплект armadura_: {str(armor_set)[1:]}\n' \
+                    f'🔫 _Armas_: {str(weapon)[1:]}\n' \
+                    f'🔋 _batería láser_: {self.laser_ammo}'
         return equipment
 
     def attack(self, enemy, shot_accuracy, shot_damage_coef):
         if randint(0, 19) in range(self.accuracy + shot_accuracy):
             if randint(0, 9) in range(self.luck):
                 enemy.hp -= self.weapon.damage * 3
-                return f'Критическое попадание, ты наносишь противнику ' \
-                       f'урон в {self.weapon.damage * 3 * shot_damage_coef} hp'
+                return f'Golpe crítico, golpeas al enemigo ' \
+                       f'daño en {self.weapon.damage * 3 * shot_damage_coef} hp'
             else:
                 enemy.hp -= self.weapon.damage * shot_damage_coef
-                return f'Попадание! Ты нанасошь противнику урон в {self.weapon.damage * shot_damage_coef} hp'
+                return f'¡Golpe! Le haces daño al enemigo в {self.weapon.damage * shot_damage_coef} hp'
 
         else:
             if randint(0, 9) not in range(self.luck):
                 self.hp -= self.weapon.damage
-                return f'Критический промах! Ты попадаешь ' \
-                       f'себе в ногу и наносишь урон в размере {self.weapon.damage * shot_damage_coef} hp'
+                return f'Error crítico! Te caes ' \
+                       f'a TI mismo en el pie y hacer daño en el Tamaño {self.weapon.damage * shot_damage_coef} hp'
             return 'Промах!'
 
     def inventory_to_str(self):

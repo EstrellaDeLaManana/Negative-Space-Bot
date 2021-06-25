@@ -1,5 +1,5 @@
-from RPG.consts.game_states import CREATE_PLAYER_MENU  # Импортирует старотовое состояние игры
-from RPG.bot_classes.start_game_menus.create_player import PlayerCreationMenu  # Импортирует все меню
+from RPG.consts.game_states import CREATE_PLAYER_MENU  # Importa el estado antiguo del juego
+from RPG.bot_classes.start_game_menus.create_player import PlayerCreationMenu  # Importa todos los Menús
 from RPG.bot_classes.start_game_menus.create_spaceship import SpaceshipCreationMenu
 from RPG.game_classes.player import Player
 from RPG.bot_classes.fight_system.fight_system import FightSystem
@@ -11,7 +11,7 @@ from RPG.bot_classes.main_menu.equipment_weapon_info import EquipmentWeaponInfo
 from RPG.bot_classes.main_menu.equipment_armor_info import EquipmentArmorInfo
 from RPG.bot_classes.main_menu.player_profile import PlayerProfile
 from RPG.bot_classes.main_menu.journal import Journal
-from RPG.bot_classes.locations.spaceship.spaceship import Spaceship  # Импортирует локации
+from RPG.bot_classes.locations.spaceship.spaceship import Spaceship  # Importa ubicaciones
 from RPG.bot_classes.locations.planets.estrad.estrad import Estrad
 from RPG.saves.data.games import DBGame
 from RPG.consts.items import items
@@ -44,15 +44,15 @@ class Game:
 
         self.bot = bot
         self.state = state
-        self.games = games  # Словарь всех других игр(необходим для мультиплеера)
+        self.games = games  # Diccionario de todos los demás juegos (necesario para el modo multijugador)
         self.chat_id = chat_id
         self.current_planet = None
         self.opened_planets = []
 
-        self.player_creation_menu = PlayerCreationMenu(self)  # Меню создания игрока
+        self.player_creation_menu = PlayerCreationMenu(self)  # Menú de creación de jugadores
         self.spaceship_creation_menu = SpaceshipCreationMenu(self)
 
-        self.main_menu = MainMenu(self)  # Главное меню
+        self.main_menu = MainMenu(self)  # Menú principal
         self.inventory = Inventory(self)
         self.inventory_item_info = InventoryItemInfo(self)
         self.player_profile = PlayerProfile(self)
@@ -61,9 +61,9 @@ class Game:
         self.equipment_weapon_info = EquipmentWeaponInfo(self)
         self.equipment_armor_info = EquipmentArmorInfo(self)
 
-        self.spaceship = Spaceship(self)  # Корабль
+        self.spaceship = Spaceship(self)  # Nave
         self.spaceship.name = spaceship_name
-        self.estrad = Estrad(self, self.player)  # Планеты
+        self.estrad = Estrad(self, self.player)  # Planetas
 
         self.locations = [self.spaceship, self.estrad]
         self.locations_dictionary = {}

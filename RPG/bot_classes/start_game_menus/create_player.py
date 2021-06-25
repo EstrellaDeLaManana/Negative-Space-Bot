@@ -8,14 +8,14 @@ class PlayerCreationMenu(BaseHandler):
         super().__init__(game, CREATE_PLAYER_MENU)
 
     def show(self, message):
-        self.game.bot.send_message(message.chat.id, 'Как тебя будут звать?')
+        self.game.bot.send_message(message.chat.id, '¿Cómo te llamarán?')
 
     def handle(self, message):
         if not check_name_valid(message.text):
-            self.game.bot.send_message(message.chat.id, 'Имя должно быть длиннее 2 символов и содержать в себе только '
-                                                        'буквы любого алфавита и цифры. Попробуй другое.')
+            self.game.bot.send_message(message.chat.id, 'El nombre debe tener más de 2 caracteres y solo debe contener '
+                                                        'letras de cualquier alfabeto y números. Prueba otro.')
         elif check_player_name_taken(self.game.games, message.text):
-            self.game.bot.send_message(message.chat.id, f'К сожалению, имя {message.text} уже занято. Попробуй другое.')
+            self.game.bot.send_message(message.chat.id, f'Por desgracia, el nombre {message.text} ya está ocupado. Prueba otro.')
         else:
             self.game.player.name = message.text
             self.game.spaceship_creation_menu.start(message)

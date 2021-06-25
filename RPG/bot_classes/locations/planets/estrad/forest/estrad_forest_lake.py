@@ -4,17 +4,17 @@ from RPG.consts.game_states import ESTRAD_FOREST_LAKE
 
 class ForestLake(BaseLocation):
     def __init__(self, game):
-        super().__init__(game, ESTRAD_FOREST_LAKE, 'Озеро', 'Ты поворачиваешь налево и долго пробираешься '
-                                                            'сквозь густые ветви местной экзотической флоры, '
-                                                            'но неожиданно, сделав очередной шаг вперёд, ты'
-                                                            ' проваливаешься по колено в воду. Ты понимаешь, что '
-                                                            'здесь находится огромное озро, скрытое туманом. Пожалуй, '
-                                                            'не стоит проверять, кто может обитать в его водах...')
+        super().__init__(game, ESTRAD_FOREST_LAKE, 'Lago', 'Giras a la izquierda y pasas mucho tiempo. '
+                                                            'a través de las densas ramas de la flora exótica local, '
+                                                            'pero de repente, dando otro paso adelante, '
+                                                            ' te caes hasta las rodillas en el agua. Te das cuenta de que '
+                                                            'aquí hay un enorme ozro, oculto por la niebla. Tal vez, '
+                                                            'no vale la pena comprobar quién puede habitar en sus aguas...')
 
-        self.reply_keyboard.row('⬅️ Назад')
+        self.reply_keyboard.row('⬅️ Atrás')
 
     def handle(self, message):
-        if message.text == '⬅️ Назад':
+        if message.text == '⬅️ Atrás':
             self.game.estrad.forest.entry.start(message)
         else:
             self.show_input_error(message)

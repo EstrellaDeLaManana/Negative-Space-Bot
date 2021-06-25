@@ -16,7 +16,7 @@ class BaseDialog(BaseHandler):
         self.show(message)
 
     def show_input_error(self, message):
-        self.game.bot.send_message(message.chat.id, 'Что? Я тебя не понимаю.',
+        self.game.bot.send_message(message.chat.id, '¿Qué? No te estoy entendiendo.',
                                    reply_markup=self.reply_keyboard)
 
     def say(self, message, text, reply_markup=None):

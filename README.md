@@ -1,2 +1,2 @@
-# Текстовая RPG на платформе Telegram
-* Имя бота для поиска в телеграме: @tele_rpg_bot
+# RPG de texto en la plataforma Telegram
+* Nombre del bot para buscar en Telegram: @tele_rpg_bot

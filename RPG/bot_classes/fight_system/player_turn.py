@@ -7,26 +7,26 @@ class FightSystemPlayerTurn(BaseHandler):
     def __init__(self, game):
         super().__init__(game, FIGHT_SYSTEM_PLAYER_TURN)
 
-    def show(self, message):  # Показывает клавиатуру и оставшиеся ОД для хода игрока
+    def show(self, message):  # Muestra el teclado y las ODAS restantes para el turno del jugador
         self.game.state = FIGHT_SYSTEM_PLAYER_TURN
         self.reply_keyboard = ReplyKeyboardMarkup(True, True)
         if self.game.player.weapon:
-            self.reply_keyboard.row(str(self.game.player.weapon), '📟 Открыть инвентарь - 3 ОД')
+            self.reply_keyboard.row(str(self.game.player.weapon), '📟 Abrir inventario - 3 SobreД')
         else:
-            self.reply_keyboard.row('📟 Открыть инвентарь - 3 ОД')
-        self.reply_keyboard.row('✔️ Закончить ход')
+            self.reply_keyboard.row('📟 Abrir inventario - 3 OD')
+        self.reply_keyboard.row('✔️ Terminar el turno')
         self.game.fight_system.show_action_points(message, self.reply_keyboard)
 
-    def handle(self, message):  # Обработчик хода игрока
+    def handle(self, message):  # Manejador de movimientos del jugador
         if message.text == str(self.game.player.weapon):
             self.game.fight_system.weapon_use_menu.start(message)
-        elif message.text == '📟 Открыть инвентарь - 3 ОД':
+        elif message.text == '📟 Abrir inventario - 3 OD':
             if self.game.fight_system.action_points >= 3:
                 self.game.fight_system.action_points -= 3
                 self.game.inventory.start(message)
             else:
                 self.game.fight_system.show_action_points_error(message, self.reply_keyboard)
-        elif message.text == '✔️ Закончить ход':
+        elif message.text == '✔️ Terminar el turno':
             self.game.fight_system.max_action_points += 1
             self.game.fight_system.action_points = self.game.fight_system.max_action_points
             self.game.fight_system.start_enemy_turn(message)

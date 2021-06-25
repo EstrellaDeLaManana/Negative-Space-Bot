@@ -6,8 +6,8 @@ class BaseWeapon(BaseObject):
         self.max_ammo = max_ammo
         self.loaded_ammo = loaded_ammo
         self.info = f'🔫*{name}* \n' \
-                    f'_🗡Урон_: {damage} \n' \
-                    f'_🔋Магазин_: {self.loaded_ammo}/{self.max_ammo}\n'
+                    f'_🗡Daño_: {damage} \n' \
+                    f'_🔋Tienda_: {self.loaded_ammo}/{self.max_ammo}\n'
         super().__init__(name, self.info, price)
         self.damage = damage
 
@@ -20,11 +20,11 @@ class BaseWeapon(BaseObject):
                 self.loaded_ammo += player.laser_ammo
                 player.laser_ammo = 0
             self.info = f'🔫*{self.name}* \n' \
-                        f'_🗡Урон_: {self.damage} \n' \
-                        f'_🔋Магазин_: {self.loaded_ammo}/{self.max_ammo}\n'
-            return f'{self.name} успешно перезаряжено!'
+                        f'_🗡Daño_: {self.damage} \n' \
+                        f'_🔋Tienda_: {self.loaded_ammo}/{self.max_ammo}\n'
+            return f'{self.name} ¡recargado con éxito!'
         else:
-            return f'Не удалось перезарядить {self.name}: нет боеприпасов!'
+            return f'No se pudo recargar {self.name}: ¡no hay munición!'
 
     def use(self, player):
         if player.weapon is None:

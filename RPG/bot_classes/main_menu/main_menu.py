@@ -5,23 +5,23 @@ from RPG.consts.game_states import MAIN_MENU
 class MainMenu(BaseHandler):
     def __init__(self, game):
         super().__init__(game, MAIN_MENU)
-        self.reply_keyboard.row('🎒Инвентарь', '⛑Снаряжение')
-        self.reply_keyboard.row('📒Журнал', '📟Профиль')
-        self.reply_keyboard.row('👀Осмотреться')
+        self.reply_keyboard.row('🎒Inventario', '⛑Equipamiento')
+        self.reply_keyboard.row('📒Registro', '📟Perfil')
+        self.reply_keyboard.row('👀Mirar alrededor')
 
     def show(self, message):
-        self.game.bot.send_message(message.chat.id, 'Главное меню', reply_markup=self.reply_keyboard)
+        self.game.bot.send_message(message.chat.id, 'Menú principal', reply_markup=self.reply_keyboard)
 
     def handle(self, message):
-        if message.text == '🎒Инвентарь':
+        if message.text == '🎒Inventario':
             self.game.inventory.start(message)
-        elif message.text == '⛑Снаряжение':
+        elif message.text == '⛑Equipamiento':
             self.game.equipment.start(message)
-        elif message.text == '📒Журнал':
+        elif message.text == '📒Registro':
             self.game.journal.start(message)
-        elif message.text == '📟Профиль':
+        elif message.text == '📟Perfil':
             self.game.player_profile.start(message)
-        elif message.text == '👀Осмотреться':
+        elif message.text == '👀Mirar alrededor':
             self.game.current_location.start(message)
         else:
-            self.game.bot.send_message(message.chat.id, 'Введено неверное значение')
+            self.game.bot.send_message(message.chat.id, 'Se ha introducido un valor incorrecto')

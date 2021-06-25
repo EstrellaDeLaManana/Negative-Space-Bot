@@ -1,6 +1,6 @@
 from RPG.game_classes.base_enemy import BaseEnemy
 
-ESTRAD_NATIVE = BaseEnemy('Местный абориген', 'Из туманных зарослей леса на тебя неожиданно нападает местный абориген',
+ESTRAD_NATIVE = BaseEnemy('Aborigen local', 'De los matorrales brumosos del bosque, un aborigen local te ataca inesperadamente',
                           80, 10, 3, 3, 3, 3)
 
-enemies = {'Местный абориген': ESTRAD_NATIVE, '': None}
+enemies = {'Aborigen local': ESTRAD_NATIVE, '': None}
