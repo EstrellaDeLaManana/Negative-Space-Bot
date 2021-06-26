@@ -6,7 +6,7 @@ from RPG.bot_classes.locations.spaceship.computer import Computer
 
 class Spaceship:
     def __init__(self, game):
-        self.name = 'Космический корабль'
+        self.name = 'Vehículo espacial'
         self.hp = 100
         self.cargo = 0
 
@@ -19,6 +19,6 @@ class Spaceship:
 
     def get_info(self):
         info = f'🚀*{self.name}*\n' \
-               f'💙_Прочность_: {self.hp}/100\n' \
-               f'📦_Грузовой отсек_: {self.cargo}/100'
+               f'💙_Resistencia_: {self.hp}/100\n' \
+               f'📦_Bodega_:{self.cargo}/100'
         return info

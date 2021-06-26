@@ -5,14 +5,14 @@ from RPG.consts.game_states import ESTRAD_FOREST_FIELD
 
 class ForestField(BaseLocation):
     def __init__(self, game):
-        super().__init__(game, ESTRAD_FOREST_FIELD, 'Туманная поляна',
-                         'Ты выходишь на окутанную густой мглой небольшую поляну. Видимо, '
-                         'здесь нет ничего интересного.', ESTRAD_NATIVE)
-        self.reply_keyboard.row('⬅️ Назад')
+        super().__init__(game, ESTRAD_FOREST_FIELD, 'Claro brumoso',
+                         'Sales a un pequeño claro cubierto de niebla espesa. Al parecer, '
+                         'no hay nada interesante aquí.', ESTRAD_NATIVE)
+        self.reply_keyboard.row('⬅️ Atrás')
         self.enemy = ESTRAD_NATIVE
 
     def handle(self, message):
-        if message.text == '⬅️ Назад':
+        if message.text == '⬅️ Atrás':
             self.game.estrad.forest.entry.start(message)
         else:
             self.show_input_error(message)

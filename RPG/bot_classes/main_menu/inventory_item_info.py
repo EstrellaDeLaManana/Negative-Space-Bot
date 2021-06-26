@@ -14,11 +14,11 @@ class InventoryItemInfo(BaseHandler):
         self.item = self.game.player.inventory[int(call.data)]
         self.reply_keyboard = ReplyKeyboardMarkup(True, True)
         if isinstance(self.item, BaseWeapon) or isinstance(self.item, BaseArmorSet):
-            self.reply_keyboard.row('✔Экипировать', '✖Выбросить')
-            self.reply_keyboard.row('🔄Перезарядить', '⬅Назад')
+            self.reply_keyboard.row('✔Equipar', '✖Tirar')
+            self.reply_keyboard.row('🔄Recargar', '⬅Atrás')
         else:
-            self.reply_keyboard.row('✔Использовать', '✖Выбросить')
-            self.reply_keyboard.row('⬅Назад')
+            self.reply_keyboard.row('✔Utilizar', '✖Tirar')
+            self.reply_keyboard.row('⬅Atrás')
         self.game.bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
         self.game.bot.delete_message(call.message.chat.id, call.message.message_id)
         self.game.bot.send_message(call.message.chat.id,
@@ -27,28 +27,28 @@ class InventoryItemInfo(BaseHandler):
                                    reply_markup=self.reply_keyboard)
 
     def handle(self, message):
-        if message.text == '✔Экипировать':
+        if message.text == '✔Equipar':
             if isinstance(self.item, BaseWeapon) or isinstance(self.item, BaseArmorSet):
                 self.item.use(self.game.player)
             else:
                 self.show_input_error(message)
             self.game.inventory.start(message)
-        elif message.text == '✔Использовать':
+        elif message.text == '✔Utilizar':
             if isinstance(self.item, BaseWeapon) or isinstance(self.item, BaseArmorSet):
                 self.show_input_error(message)
             else:
                 self.item.use(self.game.player)
             self.game.inventory.start(message)
-        elif message.text == '🔄Перезарядить':
+        elif message.text == '🔄Recargar':
             if isinstance(self.item, BaseWeapon):
                 self.game.bot.send_message(message.chat.id, self.item.reload(self.game.player))
             else:
                 self.show_input_error(message)
             self.game.inventory.start(message)
-        elif message.text == '✖Выбросить':
+        elif message.text == '✖Tirar':
             self.game.player.drop_item(self.item)
             self.game.inventory.start(message)
-        elif message.text == '⬅Назад':
+        elif message.text == '⬅Atrás':
             self.game.inventory.start(message)
         else:
             self.show_input_error(message)

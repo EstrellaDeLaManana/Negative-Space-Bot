@@ -4,13 +4,13 @@ from RPG.consts.game_states import ESTRAD_BAR
 
 class EstradBar(BaseLocation):
     def __init__(self, game):
-        super().__init__(game, ESTRAD_BAR, 'Бар "Гарцующий брамин"', 'Ты заходишь в бар. За барной стойкой сидят '
-                                                                     'несколько солдат федерации. Сейчас здесь '
-                                                                     'не происходит ничего интересного...')
-        self.reply_keyboard.row('⬅️ Назад')
+        super().__init__(game, ESTRAD_BAR, 'Bar "Brahmán de Harz"', 'Vas al Bar. Detrás de la barra se sientan '
+                                                                     'varios soldados de la Federación. Ahora aquí '
+                                                                     'no pasa nada interesante...')
+        self.reply_keyboard.row('⬅️ Atrás')
 
     def handle(self, message):
-        if message.text == '⬅️ Назад':
+        if message.text == '⬅️ Atrás':
             self.game.estrad.colony.start(message)
         else:
             self.show_input_error(message)

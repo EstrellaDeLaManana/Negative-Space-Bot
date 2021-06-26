@@ -5,43 +5,43 @@ from RPG.bot_classes.base_dialog import BaseDialog
 
 class EstradSecuritySoldier(BaseDialog):
     def __init__(self, game, player):
-        super().__init__(game, ESTRAD_SECURITY_SOLDIER, 'Солдат Межгалактической Республики',
-                         'Приветсвую вас на планете Эстрад, в колонии Межгалактической Республики. Предъявите, '
-                         'пожалуйста, ваш пропуск.', '👮🏻‍♂️')
+        super().__init__(game, ESTRAD_SECURITY_SOLDIER, 'Soldado De La República Intergaláctica',
+                         'Te saludo en el planeta Estrada, en la Colonia República Intergaláctica. Presentais, '
+                         'por favor, su pase.', '👮🏻‍♂️')
         self.player = player
         self.reply_keyboard.row(
-            f'[🗣Харизма {self.player.charisma}/4] Меня прислало высшее руководство передать срочное послание '
-            'вашему начальству.')
-        self.reply_keyboard.row('[💵250] Может можно как-то договориться?')
+            f'[🗣Carisma {self.player.charisma}/4] La alta dirección me envió para enviar un mensaje urgente. '
+            'a sus superiores.')
+        self.reply_keyboard.row('[💵250] ¿Hay algo que podamos hacer?')
         if FEDERATION_PASS in self.player.quest_items:
-            self.reply_keyboard.row('Вот мой пропуск')
-        self.reply_keyboard.row('Мне пора')
+            self.reply_keyboard.row('Aquí está mi pase')
+        self.reply_keyboard.row('Tengo que irme.')
 
     def handle(self, message):
         if (message.text ==
-                f'[🗣Харизма {self.player.charisma}/4] Меня прислало высшее руководство передать срочное послание '
-                f'вашему начальству.'):
+                f'[🗣Carisma {self.player.charisma}/4] La alta dirección me envió para enviar un mensaje urgente. '
+                f'a sus superiores.'):
             if self.game.player.charisma >= 4:
-                self.say(message, 'Хорошо, проходи.')
+                self.say(message, 'Muy bien, pasa.')
                 self.game.estrad.colony.start(message)
             else:
-                self.say(message, 'Кого ты пытаешься обмануть? Меня бы предупредили, если'
-                                  ' бы начальство кого-то ожидало.')
-        elif message.text == '[💵250] Может можно как-то договориться?':
+                self.say(message, '¿A quién estás tratando de engañar? Me habrían advertido si'
+                                  ' los jefes esperarían a alguien.')
+        elif message.text == '[💵250] ¿Hay algo que podamos hacer?':
             if self.game.player.money >= 250:
                 self.game.player.money -= 250
-                self.say(message, 'Хорошо, проходи.')
+                self.say(message, 'Muy bien, pasa.')
                 self.game.estrad.colony.start(message)
             else:
-                self.say(message, 'У тебя и денег то таких нет.')
-        elif message.text == 'Вот мой пропуск':
+                self.say(message, 'No tienes dinero.')
+        elif message.text == 'Aquí está mi pase':
             if FEDERATION_PASS in self.game.player.quest_items:
-                self.say(message, 'Хорошо, проходи')
+                self.say(message, 'Bien, ven')
                 self.game.estrad.colony.start(message)
             else:
-                self.say(message, 'Ага, у тебя его нет, умник.')
-        elif message.text == 'Мне пора':
-            self.say(message, 'До встречи.')
+                self.say(message, 'Sí, no lo tienes, listo.')
+        elif message.text == 'Tengo que irme.':
+            self.say(message, 'Nos vemos..')
             self.game.estrad.start(message)
         else:
             self.show_input_error(message)

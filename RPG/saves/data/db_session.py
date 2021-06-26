@@ -16,11 +16,11 @@ def global_init(db_file):
         return
 
     if not db_file or not db_file.strip():
-        raise Exception("Необходимо указать файл базы данных.")
+        raise Exception("Debe especificar un archivo de base de datos.")
 
     conn_str_sqlite = f'sqlite:///{db_file.strip()}?check_same_thread=False'
     conn_str = environ.get('DATABASE_URL', conn_str_sqlite)
-    print(f'Подключение к базе данных по адресу {conn_str}')
+    print(f'Conexión a la base de datos en {conn_str}')
 
     engine = sa.create_engine(conn_str, echo=False)
     __factory = orm.sessionmaker(bind=engine)

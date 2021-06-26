@@ -4,7 +4,7 @@ from RPG.game_classes.items.base_object import BaseObject
 class BaseArmorSet(BaseObject):
     def __init__(self, name, armor, price):
         info = f'🧥*{name}* \n' \
-               f'🛡_Защита_: {armor} \n'
+               f'🛡_Protección_: {armor} \n'
         super().__init__(name, info, price)
         self.armor = armor
 

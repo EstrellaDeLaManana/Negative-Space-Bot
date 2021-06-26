@@ -11,17 +11,17 @@ class Inventory(BaseHandler):
         inventory_inline_keyboard = InlineKeyboardMarkup()
         for item in self.game.player.inventory:
             if item is None:
-                btn = InlineKeyboardButton(text='<Пустой слот>',
+                btn = InlineKeyboardButton(text='<Ranura vacía>',
                                            callback_data='empty')
             else:
                 btn = InlineKeyboardButton(text=str(item),
                                            callback_data=str(
                                                self.game.player.inventory.index(item)))
             inventory_inline_keyboard.add(btn)
-        close_btn = InlineKeyboardButton(text='⬅Назад',
+        close_btn = InlineKeyboardButton(text='⬅Atrás',
                                          callback_data='back')
         inventory_inline_keyboard.add(close_btn)
-        self.game.bot.send_message(message.chat.id, '🎒Инвентарь:', reply_markup=inventory_inline_keyboard)
+        self.game.bot.send_message(message.chat.id, '🎒Inventario:', reply_markup=inventory_inline_keyboard)
 
     def handle(self, call):
         if call.data == 'back':

@@ -8,18 +8,18 @@ class SpaceshipCreationMenu(BaseHandler):
         super().__init__(game, CREATE_SPACESHIP_MENU)
 
     def show(self, message):
-        self.game.bot.send_message(message.chat.id, 'Как будет называться твой космический корабль?')
+        self.game.bot.send_message(message.chat.id, '¿Cómo se llamará tu nave espacial?')
 
     def handle(self, message):
         if not check_name_valid(message.text):
             self.game.bot.send_message(message.chat.id,
-                                       'Название корабля должно быть длиннее 2 символов и содержать в себе только '
-                                       'буквы любого алфавита и цифры. Попробуй другое.')
+                                       'El nombre de la nave debe tener más de 2 caracteres y contener solo '
+                                       'letras de cualquier alfabeto y números. Prueba otro.')
         elif check_spaceship_name_taken(self.game.games, message.text):
             self.game.bot.send_message(message.chat.id,
-                                       f'К сожалению, название {message.text} уже занято. Попробуй другое.')
+                                       f'Por desgracia, el título {message.text} ya está ocupado. Prueba otro.')
         else:
             self.game.spaceship.name = message.text
             self.game.bot.send_message(message.chat.id,
-                                       f'Добро пожаловать в игру, {self.game.player.name}')
+                                       f'Bienvenido al juego, {self.game.player.name}')
             self.game.main_menu.start(message)

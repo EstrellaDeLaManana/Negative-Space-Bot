@@ -4,7 +4,7 @@ from RPG.game_classes.items.base_object import BaseObject
 class MedPack(BaseObject):
     def __init__(self, name, hp_increase):
         info = f'*➕{name}*\n' \
-               f'❤_️Восстанавливает {hp_increase} едениц здоровья._'
+               f'❤_️Restaura {hp_increase} unidades de la salud._'
         super().__init__(name, info, 100)
         self.hp_increase = hp_increase
 

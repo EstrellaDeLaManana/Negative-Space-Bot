@@ -8,11 +8,11 @@ from RPG.bot_classes.locations.planets.estrad.forest.estrad_forest import Estrad
 
 class Estrad(BaseLocation):
     def __init__(self, game, player):
-        super().__init__(game, None, 'Эстрад',
-                         'Это небольшая планета на краю галактики, обладающая тропическим климатом. В данный момент '
-                         'планета колонизируется Межгалактической Федерацией. Население планеты представлено '
-                         'местными аборигенами, представителями расы Эстрадин, и колонизаторами Межгалактической'
-                         'Федерации.')
+        super().__init__(game, None, 'Tablados',
+                         'Es un pequeño planeta en el borde de la galaxia que posee un clima tropical. En este instante '
+                         'el planeta está colonizado por la Federación Intergaláctica. Población mundial representada '
+                         'los aborígenes locales, miembros de la raza Estradina, y los colonizadores Intergalácticos'
+                         'Federación.')
         self.port = EstradPort(game)
         self.security_soldier = EstradSecuritySoldier(game, self.game.player)
         self.colony = EstradColony(game)

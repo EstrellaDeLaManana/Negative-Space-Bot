@@ -1,10 +1,10 @@
-Задание проекта - написать текстовую RPG на платформе Telegram бота.
-В игре планируется реализовать следующие функции:
-    - Система локаций, возможность перемещаться между ними
-    - Пошаговая боевая система
-    - Система прокачки навыков и характеристик героя
-    - Диалоговая система, где характеристики персонажа будут влиять на доступные варианты ответа
-    - Система торговецв для покупки/продажи снаряжения
-    - Система инвентаря и снаряжения
-    - Взаимодействие с другими игроками в виде обмена инвентарём/приглашения в локацию или PvP
-    - Система квестов
+La tarea del proyecto es escribir un RPG de texto en la plataforma Telegram del bot.
+El juego planea implementar las siguientes características:
+    - Sistema de ubicaciones, la capacidad de moverse entre ellos
+    - Sistema de combate por turnos
+    - Sistema de bombeo de habilidades y características del héroe
+    - Sistema de diálogo donde las características del personaje influirán en las opciones de respuesta disponibles
+    - Sistema del revendedor para la compra/venta del aparejo
+    - Sistema de inventario y equipamiento
+    - Interactuar con otros jugadores en forma de intercambio de inventario/invitación a la ubicación o PvP
+    - Sistema de misiones

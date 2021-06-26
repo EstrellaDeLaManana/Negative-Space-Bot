@@ -5,8 +5,7 @@ from .db_session import SqlAlchemyBase
 class DBGame(SqlAlchemyBase):
     __tablename__ = 'games'
 
-    id = sqlalchemy.Column(sqlalchemy.Integer,
-                           primary_key=True, autoincrement=True)
+    id = sqlalchemy.Column(sqlalchemy.Integer,primary_key=True, autoincrement=True)
     chat_id = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     player_name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     current_location = sqlalchemy.Column(sqlalchemy.String, nullable=True)
